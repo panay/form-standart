@@ -1,0 +1,160 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="")
+    meta(name="keywords" content="")
+
+    title Form fields template
+
+    link(rel="stylesheet" href="css/main.css")
+    script(src="js/jquery.min.js")
+    script(src="js/jquery.validate.js")
+    //script(src="js/jquery.maskedinput.js")
+    script(src="js/jquery.inputmask.bundle.js")
+    script(src="js/fancySelect.js")
+    script(src="js/main.js")
+
+  body
+    main
+      form#form(autocomplete="off")
+        fieldset
+
+          input(type="reset" value="Сбросить")
+          input#set_cookies(type="button" value="Set Cookie")
+          input#delete_cookies(type="button" value="Delete Cookie")
+          legend Примеры полей ввода
+          ul
+            li
+              // Имя
+              label Имя
+                input(data-cookie type="text" name="name" placeholder="Полное имя")
+            li
+              // Пароль
+              label Пароль
+                input(type="password" name="password" placeholder="eXampl3pa$$w0rd")
+                button.unmask(type="button" title="Скрыть / показать пароль")
+                  svg.unmask__on(role='img'): use(xlink:href='#icon-eye')
+                  svg.unmask__off(role='img'): use(xlink:href='#icon-eye-blocked')
+                  | Показать
+            li
+              // Подтверждение пароля
+              label Подтверждение пароля
+                input(type="password" name="password_confirm" placeholder="eXampl3pa$$w0rd")
+            li
+              // Чекбокс
+              label
+                input(data-cookie type="checkbox" name="agree")
+                | &nbsp;Option 1
+            li
+              // Радио
+              label
+                input(type="radio" name="radio")
+                | &nbsp;Нет меня
+            li
+              // Валюта
+              label Валюта
+                input(type="text" name="currency")
+            li
+              label Дата
+                input(data-cookie type="text" name="date" placeholder="Полная дата")
+            li
+              label Электронная почта
+                input(data-cookie type="text" name="email" placeholder="name@example.com")
+            li
+              label Подтвердите эл. почту
+                input(type="email" name="email_confirm" placeholder="name@example.com")
+            li
+              label Телефон
+                input(type="tel" name="tel" placeholder="+7 (123) 456 - 78 - 90")
+            li
+              label Число
+                input(type="number" name="number" placeholder="Любое число от 0 до 100")
+            li
+              label Домашняя страница
+                input(type="url" name="homepage" placeholder="http://yoursite.com")
+            li
+              label Номер кредитной карты
+                input(type="text" name="creditcard" placeholder="1234-5678-9012-3456")
+            li
+              label Сообщение
+                textarea(data-cookie name="comment" placeholder="Съешь ещё этих мягких французских булок, да выпей чаю.")
+            li
+              .taglist
+                -var i = 0
+                -while(i < 5)
+                -i++
+                input(type="checkbox" id="tag-#{i}")
+                label(for="tag-#{i}") Checkbox-tag #{i}
+            li
+              .taglist
+                -var i = 0
+                -while(i < 5)
+                -i++
+                input(type="radio" id="tag-1#{i}" name="tag-radio")
+                label(for="tag-1#{i}") Radio-tag #{i}
+            li
+              label Обычный селект
+                select#select.select
+                  option Option 1
+                  option Option 2
+                  option Option 3
+                  option Option 4
+            li
+              label Стилизованный селект
+              select#select--styled.select--styled
+                option Lorem
+                option Ipsum
+                option Dolore
+            li
+              label Иконочный селект
+              select#select--iconed.select--iconed
+                option(data-icon="comfort-wifi") Lorem
+                option(data-icon="comfort-wifi") Ipsum
+                option(data-icon="comfort-wifi") Dolore
+            li
+              label Кнопки
+              button(class="button" type="submit")
+                svg(role='img'): use(xlink:href='#icon-comfort-wifi')
+                | &nbspIconed
+              a.button.small(href="#0" title="Small") Small
+              a.button.radius(href="#0" title="Normal") Normal
+              a.button.medium(href="#0" title="Medium") Medium
+              a.button.large(href="#0" title="Large") Large
+            li
+              button.button.small(title="Small") Small
+              button.button.radius(title="Normal") Normal
+              button.button.medium(title="Medium") Medium
+              button.button.large(title="Large") Large
+            li
+              input.button.small(type="button" value="Input button")
+              input.button.radius(type="button" value="Input button")
+              input.button.medium(type="button" value="Input button")
+              input.button.large(type="button" value="Input button")
+
+            li
+              label Иконочный список
+              ul.iconed
+                li
+                  svg(role='img'): use(xlink:href='#icon-comfort-air')
+                  | lorem Ipsum
+                li
+                  svg(role='img'): use(xlink:href='#icon-comfort-arbor')
+                  | lorem Ipsum
+                li
+                  svg(role='img'): use(xlink:href='#icon-comfort-badminton')
+                  | lorem Ipsum
+                li
+                  svg(role='img'): use(xlink:href='#icon-comfort-baggage')
+                  | lorem Ipsum
+                li
+                  svg(role='img'): use(xlink:href='#icon-comfort-banket')
+                  | lorem Ipsum
+      form#auth
+        fieldset
+          ul
+            li
+              label Логин
+              input(data-cookie type="text" name="login" placeholder="Логин")

@@ -1,0 +1,384 @@
+//===============================
+// $RESET
+//===============================
+@import "normalize";
+
+//@import "fancySelect";
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  &:before, &:after {
+    box-sizing: inherit;
+  }
+}
+
+img {
+  vertical-align: middle;
+}
+
+ul, ol {
+  list-style: none;
+  &.iconed{
+    & > li{
+      padding-left: 21px;
+      position: relative;
+    }
+    svg{
+      position: absolute;
+      top: .2em;
+      left: 0;
+      //margin-right: 5px;
+      //vertical-align: -.1em;
+    }
+  }
+}
+
+svg {
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  width: 16px;
+  height: 16px;
+}
+
+//===============================
+// $BASE
+//===============================
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: sans-serif;
+}
+
+//========================================================================
+//  $GRID SYSTEM
+//========================================================================
+
+.grid {
+  $gutter: 20px;
+  display: flex;
+  &__cell {
+    flex: 1;
+
+    /* Alignment per cell */
+    &--top {
+      align-self: flex-start;
+    }
+    &--bottom {
+      align-self: flex-end;
+    }
+    &--center {
+      align-self: center;
+    }
+  }
+
+  /* Alignment per row */
+  &--top {
+    align-items: flex-start;
+  }
+  &--bottom {
+    align-items: flex-end;
+  }
+  &--center {
+    align-items: center;
+  }
+
+  /* Base classes for all media */
+
+  //  &--fit > .grid__cell { flex: 1; }
+  //  &--full > .grid__cell { flex: 0 0 100%; }
+  //  &--1of2 > .grid__cell { flex: 0 0 50%; }
+  //  &--1of3 > .grid__cell { flex: 0 0 33.3333%; }
+  //  &--1of4 > .grid__cell { flex: 0 0 25%; }
+
+  /* With gutters */
+  &--gutters {
+    margin-left: -#{$gutter};
+    & > .grid__cell {
+      padding-left: $gutter;
+    }
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 500px;
+}
+
+.hidden {
+  display: none;
+}
+
+//===============================
+// $FORM
+//===============================
+
+//ul {
+//  flex-flow: column wrap;
+//}
+//
+//li {
+//  display: flex;
+//  flex-flow: column wrap;
+//}
+
+// $TAGLIST
+//------------------------------------------------------------------------
+
+.taglist {
+  display: flex;
+  flex-flow: row wrap;
+
+  label {
+    border: 1px solid #ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  input:checked + label {
+    background: #ccc;
+  }
+  input {
+    display: none;
+  }
+}
+
+//  $BUTTONS
+//------------------------------------------------------------------------
+
+.button {
+  display: inline-block;
+  background: none;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  white-space: nowrap;
+  $buttonBg: #ccc;
+  $buttonColor: #000;
+  background: $buttonBg;
+  color: $buttonColor;
+  padding: .25em 1em;
+  font-size: 1rem;
+  &:hover {
+    background: darken($buttonBg, 5%);
+  }
+  &:active {
+    background: darken($buttonBg, 10%);
+  }
+  &.radius {
+    border-radius: 5px;
+  }
+  &.small {
+    font-size: .75rem;
+  }
+  &.medium {
+    font-size: 1.25rem;
+  }
+  &.large {
+    font-size: 1.50rem;
+  }
+}
+
+//  $PASSWORD
+//------------------------------------------------------------------------
+
+.unmask {
+  position: absolute;
+  outline: none;
+  bottom: 0;
+  right: 0;
+  font-size: 0;
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 30px;
+  height: 30px;
+  .unmask__off {
+      display: none;
+  }
+  svg {
+    fill: currentColor;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+input[type="password"] + .unmask{
+  .unmask__off {
+    display: none;
+  }
+  .unmask__on {
+    display: inline-block;
+  }
+}
+
+input[type="text"] + .unmask {
+
+  .unmask__off {
+    display: inline-block;
+  }
+  .unmask__on {
+    display: none;
+  }
+}
+
+
+
+//========================================================================
+//  $FORM VALIDATE STYLES
+//========================================================================
+
+#form {
+  fieldset > ul > li {
+    margin-top: 1.5em;
+    position: relative;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+span.error {
+  position: absolute;
+  font-size: 13px;
+  color: red;
+  top: 100%;
+  left: 0;
+}
+
+input:not(:focus).error {
+  background-color: #FFD9D9;
+}
+
+input:not(:focus).valid {
+  background-color: #D9FFD9;
+}
+
+label {
+  user-select: none;
+  fieldset &{
+    display: block;
+  }
+}
+
+select,
+textarea,
+fieldset {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  border-radius: none;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+  border: 1px solid #ccc;
+  padding: .25em .5em;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input[type="password"],
+.select-wrapper {
+  background: #fff;
+  height: 30px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input[type="password"]{
+  padding: 0 .5em;
+}
+
+//  $FANCY SELECT
+//------------------------------------------------------------------------
+
+.fancy-select {
+  position: relative;
+  svg {
+    margin-right: 5px;
+  }
+  &.disabled {
+    opacity: .5;
+  }
+  .trigger,
+  li{
+    padding-left: .5em;
+  }
+  .trigger {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    border: 1px solid #ccc;
+    min-width: 200px;
+  }
+  .options {
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 50;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    width: 100%;
+    li {
+      cursor: pointer;
+      white-space: nowrap;
+      //transition: all 150ms ease-out;
+      position: relative;
+      &.selected {
+        background: rgba(43, 134, 134, 0.3);
+        color: rgba(255, 255, 255, 0.75);
+      }
+      &.hover {
+        color: cyan;
+      }
+    }
+    &.open {
+      visibility: visible;
+      top: 100%;
+      opacity: 1;
+      //transition: opacity 300ms ease-out, top 300ms ease-out;
+    }
+    &.overflowing {
+      top: auto;
+      bottom: 100%;
+      //transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+      &.open {
+        top: auto;
+        bottom: 50px;
+        //transition: opacity 300ms ease-out, bottom 300ms ease-out;
+      }
+    }
+  }
+}
+

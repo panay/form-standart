@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Form fields template</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <!--script(src="js/jquery.maskedinput.js")-->
+    <script src="js/jquery.inputmask.bundle.js"></script>
+    <script src="js/fancySelect.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <main>
+      <form id="form" autocomplete="off">
+        <fieldset>
+          <input type="reset" value="Сбросить">
+          <input id="set_cookies" type="button" value="Set Cookie">
+          <input id="delete_cookies" type="button" value="Delete Cookie">
+          <legend>Примеры полей ввода</legend>
+          <ul>
+            <li>
+              <!-- Имя-->
+              <label>Имя
+                <input data-cookie type="text" name="name" placeholder="Полное имя">
+              </label>
+            </li>
+            <li>
+              <!-- Пароль-->
+              <label>Пароль
+                <input type="password" name="password" placeholder="eXampl3pa$$w0rd">
+                <button type="button" title="Скрыть / показать пароль" class="unmask">
+                  <svg role="img" class="unmask__on">
+                    <use xlink:href="#icon-eye"></use>
+                  </svg>
+                  <svg role="img" class="unmask__off">
+                    <use xlink:href="#icon-eye-blocked"></use>
+                  </svg>Показать
+                </button>
+              </label>
+            </li>
+            <li>
+              <!-- Подтверждение пароля-->
+              <label>Подтверждение пароля
+                <input type="password" name="password_confirm" placeholder="eXampl3pa$$w0rd">
+              </label>
+            </li>
+            <li>
+              <!-- Чекбокс-->
+              <label>
+                <input data-cookie type="checkbox" name="agree">&nbsp;Option 1
+              </label>
+            </li>
+            <li>
+              <!-- Радио-->
+              <label>
+                <input type="radio" name="radio">&nbsp;Нет меня
+              </label>
+            </li>
+            <li>
+              <!-- Валюта-->
+              <label>Валюта
+                <input type="text" name="currency">
+              </label>
+            </li>
+            <li>
+              <label>Дата
+                <input data-cookie type="text" name="date" placeholder="Полная дата">
+              </label>
+            </li>
+            <li>
+              <label>Электронная почта
+                <input data-cookie type="text" name="email" placeholder="name@example.com">
+              </label>
+            </li>
+            <li>
+              <label>Подтвердите эл. почту
+                <input type="email" name="email_confirm" placeholder="name@example.com">
+              </label>
+            </li>
+            <li>
+              <label>Телефон
+                <input type="tel" name="tel" placeholder="+7 (123) 456 - 78 - 90">
+              </label>
+            </li>
+            <li>
+              <label>Число
+                <input type="number" name="number" placeholder="Любое число от 0 до 100">
+              </label>
+            </li>
+            <li>
+              <label>Домашняя страница
+                <input type="url" name="homepage" placeholder="http://yoursite.com">
+              </label>
+            </li>
+            <li>
+              <label>Номер кредитной карты
+                <input type="text" name="creditcard" placeholder="1234-5678-9012-3456">
+              </label>
+            </li>
+            <li>
+              <label>Сообщение
+                <textarea data-cookie name="comment" placeholder="Съешь ещё этих мягких французских булок, да выпей чаю."></textarea>
+              </label>
+            </li>
+            <li>
+              <div class="taglist">
+                <input type="checkbox" id="tag-1">
+                <label for="tag-1">Checkbox-tag 1</label>
+                <input type="checkbox" id="tag-2">
+                <label for="tag-2">Checkbox-tag 2</label>
+                <input type="checkbox" id="tag-3">
+                <label for="tag-3">Checkbox-tag 3</label>
+                <input type="checkbox" id="tag-4">
+                <label for="tag-4">Checkbox-tag 4</label>
+                <input type="checkbox" id="tag-5">
+                <label for="tag-5">Checkbox-tag 5</label>
+              </div>
+            </li>
+            <li>
+              <div class="taglist">
+                <input type="radio" id="tag-11" name="tag-radio">
+                <label for="tag-11">Radio-tag 1</label>
+                <input type="radio" id="tag-12" name="tag-radio">
+                <label for="tag-12">Radio-tag 2</label>
+                <input type="radio" id="tag-13" name="tag-radio">
+                <label for="tag-13">Radio-tag 3</label>
+                <input type="radio" id="tag-14" name="tag-radio">
+                <label for="tag-14">Radio-tag 4</label>
+                <input type="radio" id="tag-15" name="tag-radio">
+                <label for="tag-15">Radio-tag 5</label>
+              </div>
+            </li>
+            <li>
+              <label>Обычный селект
+                <select id="select" class="select">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                  <option>Option 4</option>
+                </select>
+              </label>
+            </li>
+            <li>
+              <label>Стилизованный селект</label>
+              <select id="select--styled" class="select--styled">
+                <option>Lorem</option>
+                <option>Ipsum</option>
+                <option>Dolore</option>
+              </select>
+            </li>
+            <li>
+              <label>Иконочный селект</label>
+              <select id="select--iconed" class="select--iconed">
+                <option data-icon="comfort-wifi">Lorem</option>
+                <option data-icon="comfort-wifi">Ipsum</option>
+                <option data-icon="comfort-wifi">Dolore</option>
+              </select>
+            </li>
+            <li>
+              <label>Кнопки</label>
+              <button type="submit" class="button">
+                <svg role="img">
+                  <use xlink:href="#icon-comfort-wifi"></use>
+                </svg>&nbspIconed
+              </button><a href="#0" title="Small" class="button small">Small</a><a href="#0" title="Normal" class="button radius">Normal</a><a href="#0" title="Medium" class="button medium">Medium</a><a href="#0" title="Large" class="button large">Large</a>
+            </li>
+            <li>
+              <button title="Small" class="button small">Small</button>
+              <button title="Normal" class="button radius">Normal</button>
+              <button title="Medium" class="button medium">Medium</button>
+              <button title="Large" class="button large">Large</button>
+            </li>
+            <li>
+              <input type="button" value="Input button" class="button small">
+              <input type="button" value="Input button" class="button radius">
+              <input type="button" value="Input button" class="button medium">
+              <input type="button" value="Input button" class="button large">
+            </li>
+            <li>
+              <label>Иконочный список</label>
+              <ul class="iconed">
+                <li>
+                  <svg role="img">
+                    <use xlink:href="#icon-comfort-air"></use>
+                  </svg>lorem Ipsum
+                </li>
+                <li>
+                  <svg role="img">
+                    <use xlink:href="#icon-comfort-arbor"></use>
+                  </svg>lorem Ipsum
+                </li>
+                <li>
+                  <svg role="img">
+                    <use xlink:href="#icon-comfort-badminton"></use>
+                  </svg>lorem Ipsum
+                </li>
+                <li>
+                  <svg role="img">
+                    <use xlink:href="#icon-comfort-baggage"></use>
+                  </svg>lorem Ipsum
+                </li>
+                <li>
+                  <svg role="img">
+                    <use xlink:href="#icon-comfort-banket"></use>
+                  </svg>lorem Ipsum
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </fieldset>
+      </form>
+    </main>
+  </body>
+</html>
+<!--иконка и надпись-->
+<!--вывод подсказок-->
+<!--в поле-->
+<!--под полем-->
+<!--масок-->
+<!--телефон-->
+<!--номер карты-->
+<!--вывод ошибок-->
+<!--для каждого поля-->
+<!--общий статус формы-->
+<!--содержание типовых ошибок-->
+<!--клиентскую валидацию-->
+<!--подобрать скрипт-->
+<!--реализовать пример-->
+<!--сделать заготовки для серверной валидации (состояние no JS)-->
+<!--Создать примеры самым используемых форм:-->
+<!--общая со всеми элементами;-->
+<!--вход;-->
+<!--регистрация;-->
+<!--восстановить пароль;-->
+<!--обратная связь.-->
+<!--Другие нюансы:-->
+<!--валидация на лету при переходе на следующее поле;-->
+<!--реализовать инструмент для сохранения значений в форме (важно форм состоящих из нескольких шагов);-->
+<!--выписать состояния, которые должны учитывать дизайнеры.-->
