@@ -1,30 +1,25 @@
 //  $SVG
 //------------------------------------------------------------------------
-
-$.get("img/sprite.svg", function (data) {
-  var div = document.createElement("div");
-  $(div).css({
-    'border': '0',
-    'clip': 'rect(0 0 0 0)',
-    'overflow': 'hidden',
-    'margin': '-1px',
-    'padding': '0',
-    'position': 'absolute',
-    'width': '1px',
-    'height': '1px'
+$(function () {
+  $.get("/img/sprite.svg", function (data) {
+    var div = document.createElement("div");
+    $(div).css({
+      'border': '0',
+      'clip': 'rect(0 0 0 0)',
+      'overflow': 'hidden',
+      'margin': '-1px',
+      'padding': '0',
+      'position': 'absolute',
+      'width': '1px',
+      'height': '1px'
+    });
+    div.innerHTML = new XMLSerializer().serializeToString(data.documentElement);
+    document.body.insertBefore(div, document.body.childNodes[0]);
   });
-  div.innerHTML = new XMLSerializer().serializeToString(data.documentElement);
-  document.body.insertBefore(div, document.body.childNodes[0]);
-});
 
 //---------------------------------------
 //	$MASK
 //---------------------------------------
-
-//$('[type="tel"]').mask("+7 (999) 999 - 99 - 99", {placeholder: "_"});
-//$('[name="creditcard"]').mask("9999-9999-9999-9999", {placeholder: "_"});
-
-$(document).ready(function () {
   // Date
   $("[name='date']").inputmask("date", {placeholder: "дд/мм/гггг"});
 
@@ -39,13 +34,6 @@ $(document).ready(function () {
     placeholder: '0'
   });
 
-  // Name
-
-  //$('#name').inputmask({
-  //  mask: "a{2,65}[-]a{2,65} a{2,65}[-]a{2,65}",
-  //  greedy: false
-  //});
-
   $("[name='name']").inputmask('Regex', {regex: "[_a-zA-Zа-яА-Я- ]+$"});
 
 
@@ -57,17 +45,10 @@ $(document).ready(function () {
 
   // Email
   $("[name='email']").inputmask("email");
-});
 
 //========================================================================
 //  $STYLED--SELECT
 //========================================================================
-
-$(document).ready(function () {
-
-
-  // Select
-
   $('.select').wrap('<div class="select-wrapper"></div>');
 
   // Styled select
@@ -83,77 +64,30 @@ $(document).ready(function () {
     }
   });
 
-
-  /*
-   function from : https://gist.github.com/3559343
-   Thank you bminer!
-   */
-
-  function changeType(x, type) {
-    if (x.prop('type') == type)
-      return x; //That was easy.
-    try {
-      return x.prop('type', type); //Stupid IE security will not allow this
-    } catch (e) {
-      //Try re-creating the element (yep... this sucks)
-      //jQuery has no html() method for the element, so we have to put into a div first
-      var html = $("<div>").append(x.clone()).html();
-      var regex = /type=(\")?([^\"\s]+)(\")?/; //matches type=text or type="text"
-      //If no match, we add the type attribute to the end; otherwise, we replace
-      var tmp = $(html.match(regex) == null ?
-          html.replace(">", ' type="' + type + '">') :
-          html.replace(regex, 'type="' + type + '"'));
-      //Copy data from old element
-      tmp.data('type', x.data('type'));
-      var events = x.data('events');
-      var cb = function (events) {
-        return function () {
-          //Bind all prior events
-          for (i in events) {
-            var y = events[i];
-            for (j in y)
-              tmp.bind(i, y[j].handler);
-          }
-        }
-      }(events);
-      x.replaceWith(tmp);
-      setTimeout(cb, 10); //Wait a bit to call function
-      return tmp;
-    }
-  }
-
   // Password show/hide
   $('[type="password"] + .unmask').on('click', function () {
 
-    if ($(this).prev('input').attr('type') == 'password')
-      changeType($(this).prev('input'), 'text');
-
+    if ($(this).parents('label').find('input').attr('type') == 'password')
+      $(this).parents('label').find('input').attr('type', 'text');
     else
-      changeType($(this).prev('input'), 'password');
+      $(this).parents('label').find('input').attr('type', 'password');
 
     return false;
   });
-
-
-});
 
 //---------------------------------------
 //	$VALIDATE
 //---------------------------------------
 
-$(document).ready(function () {
-
-  $("#form").validate({
+  $("form").validate({
     debug: true,
     ignore: ".ignore",
     errorElement: "span",
-    wrapper: 'div class="relative"',
     onsubmit: false,
-    onkeyup: true,
     rules: {
       name: {
         required: true,
-        minlength: 2,
+        minlength: 2
       },
       email: {
         required: true,
@@ -180,7 +114,7 @@ $(document).ready(function () {
         equalTo: "#password"
       },
       tel: {
-        required: true,
+        required: true
       },
       number: {
         number: true,
@@ -213,73 +147,75 @@ $(document).ready(function () {
     max: $.validator.format("Пожалуйста, введите число, меньшее или равное {0}."),
     min: $.validator.format("Пожалуйста, введите число, большее или равное {0}.")
   });
-});
+
+  /*------------------------------------*\
+   $TAGS
+   \*------------------------------------*/
+  $('#tags').tagsInput();
 
 //========================================
 //  $COOKIES
 //========================================
 
 // возвращает cookie с именем name, если есть, если нет, то undefined
-function getCookie(name) {
-  var matches = document.cookie.match(new RegExp(
-      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+  function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
 
 // устанавливает cookie c именем name и значением value
 // options - объект с свойствами cookie (expires, path, domain, secure)
-function setCookie(name, value, options) {
-  options = options || {};
+  function setCookie(name, value, options) {
+    options = options || {};
 
-  var expires = options.expires;
+    var expires = options.expires;
 
-  if (typeof expires == "number" && expires) {
-    var d = new Date();
-    d.setTime(d.getTime() + expires * 1000);
-    expires = options.expires = d;
+    if (typeof expires == "number" && expires) {
+      var d = new Date();
+      d.setTime(d.getTime() + expires * 1000);
+      expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+      options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+      updatedCookie += "; " + propName;
+      var propValue = options[propName];
+      if (propValue !== true) {
+        updatedCookie += "=" + propValue;
+      }
+    }
+
+    document.cookie = updatedCookie;
   }
-  if (expires && expires.toUTCString) {
-    options.expires = expires.toUTCString();
+
+// удаляет cookie с именем name
+  function deleteCookie(name) {
+    setCookie(name, "", {
+      expires: -1
+    });
   }
 
-  value = encodeURIComponent(value);
-
-  var updatedCookie = name + "=" + value;
-
-  for (var propName in options) {
-    updatedCookie += "; " + propName;
-    var propValue = options[propName];
-    if (propValue !== true) {
-      updatedCookie += "=" + propValue;
+// Удаляет все куки
+  function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
   }
 
-  document.cookie = updatedCookie;
-}
-
-// удаляет cookie с именем name
-function deleteCookie(name) {
-  setCookie(name, "", {
-    expires: -1
-  });
-}
-
-// Удаляет все куки
-function deleteAllCookies() {
-  var cookies = document.cookie.split(";");
-  for (var i = 0; i < cookies.length; i++) {
-    var cookie = cookies[i];
-    var eqPos = cookie.indexOf("=");
-    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-  }
-}
-
 //  $COOKIES > FUNCTIONS
 //------------------------------------------
-
-$(document).ready(function () {
 
   var $cookies = $('[data-cookie]');
 

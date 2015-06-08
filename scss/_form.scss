@@ -1,0 +1,164 @@
+.inline {
+  display: flex;
+  > div {
+    flex: 1;
+    margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.inline-fields {
+  display: flex;
+  label, input {
+    flex: 1;
+  }
+  label {
+    flex: 0 0 10%;
+    padding-right: 20px;
+  }
+  span.error {
+    left: 10%;
+  }
+}
+
+.hint {
+  font-size: 13px;
+  color: rgb(180, 180, 180);;
+  display: block;
+  margin-top: 2px;
+}
+
+form {
+  fieldset {
+    border: none;
+    div {
+      margin-top: 15px;
+      position: relative;
+      label {
+        &.required:after {
+          content: ' *';
+          color: red;
+        }
+      }
+      input, select, textarea {
+        display: block;
+        width: 100%;
+        height: 35px;
+        padding: 0 15px;
+        border: 1px solid #ccc;
+      }
+      textarea {
+        height: 200px;
+        resize: none;
+      }
+      input[type="checkbox"],
+      input[type="radio"] {
+        width: auto;
+        display: inline;
+        height: auto;
+      }
+
+      span.error {
+        color: red;
+        font-size: 12px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+      .error-msg {
+        color: red;
+        font-size: 12px;
+      }
+
+      input:not(:focus).error {
+        background-color: #FFD9D9;
+      }
+
+      input:not(:focus).valid {
+        background-color: #D9FFD9;
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  $LOGIN
+\*------------------------------------*/
+.form-example {
+  padding: 20px;
+  fieldset {
+    border: 1px solid #ccc;
+  }
+}
+
+/*------------------------------------*\
+  $FANCY SELECT
+\*------------------------------------*/
+.fancy-select {
+  position: relative;
+  svg {
+    margin-right: 5px;
+  }
+  &.disabled {
+    opacity: .5;
+  }
+  .trigger,
+  li {
+    padding-left: .5em;
+  }
+  .trigger {
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    border: 1px solid #ccc;
+    min-width: 200px;
+  }
+  .options {
+    background: #fff;
+    list-style: none;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 50;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    width: 100%;
+    li {
+      cursor: pointer;
+      white-space: nowrap;
+      //transition: all 150ms ease-out;
+      position: relative;
+      &.selected {
+        background: rgba(43, 134, 134, 0.3);
+        color: rgba(255, 255, 255, 0.75);
+      }
+      &.hover {
+        color: cyan;
+      }
+    }
+    &.open {
+      visibility: visible;
+      top: 100%;
+      opacity: 1;
+      //transition: opacity 300ms ease-out, top 300ms ease-out;
+    }
+    &.overflowing {
+      top: auto;
+      bottom: 100%;
+      //transition: opacity 300ms ease-out, bottom 300ms ease-out, visibility 300ms ease-out;
+      &.open {
+        top: auto;
+        bottom: 50px;
+        //transition: opacity 300ms ease-out, bottom 300ms ease-out;
+      }
+    }
+  }
+}
