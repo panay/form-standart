@@ -25,7 +25,7 @@
 
 .hint {
   font-size: 13px;
-  color: rgb(180, 180, 180);;
+  color: #B4B4B4;
   display: block;
   margin-top: 2px;
 }
@@ -70,6 +70,39 @@ form {
       .error-msg {
         color: red;
         font-size: 12px;
+      }
+
+      .unmask {
+        position: absolute;
+        outline: none;
+        bottom: 24px;
+        right: 0;
+        font-size: 0;
+        border: 1px solid #ccc;
+        background: #fff;
+        width: 35px;
+        height: 35px;
+        &__on {
+          svg.unmask__off {
+            display: none;
+          }
+          svg.unmask__on {
+            display: inline-block;
+          }
+        }
+        &__off {
+          svg.unmask__on {
+            display: none;
+          }
+          svg.unmask__off {
+            display: inline-block;
+          }
+        }
+        svg {
+          fill: currentColor;
+          width: 30px;
+          height: 35px;
+        }
       }
 
       input:not(:focus).error {

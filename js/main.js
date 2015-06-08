@@ -65,12 +65,16 @@ $(function () {
   });
 
   // Password show/hide
-  $('[type="password"] + .unmask').on('click', function () {
+  $('.unmask').on('click', function () {
 
-    if ($(this).parents('label').find('input').attr('type') == 'password')
-      $(this).parents('label').find('input').attr('type', 'text');
-    else
-      $(this).parents('label').find('input').attr('type', 'password');
+    if ($(this).parent().find('input').attr('type') == 'password') {
+      $(this).parent().find('input').attr('type', 'text');
+      $(this).removeClass('unmask__on').addClass('unmask__off');
+    }
+    else {
+      $(this).parent().find('input').attr('type', 'password');
+      $(this).removeClass('unmask__off').addClass('unmask__on');
+    }
 
     return false;
   });

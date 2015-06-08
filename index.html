@@ -33,6 +33,14 @@
           <div>
             <label for="password">пароль</label>
             <input type="password" id="password" name="password" placeholder="password"><span class="error-msg">Это поле необходимо заполнить.</span>
+            <button type="button" title="Скрыть / показать пароль" class="unmask">
+              <svg role="img" class="unmask__on">
+                <use xlink:href="#icon-eye"></use>
+              </svg>
+              <svg role="img" class="unmask__off">
+                <use xlink:href="#icon-eye-blocked"></use>
+              </svg>Показать
+            </button>
           </div>
           <div>
             <label for="password_confirm">подтверждение пароля</label>
