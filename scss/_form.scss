@@ -33,6 +33,14 @@
 form {
   fieldset {
     border: none;
+
+    &.valid {
+      background: rgba(#00ff00, 0.2);
+    }
+    &.invalid {
+      background: rgba(red, 0.1);
+    }
+
     div {
       margin-top: 15px;
       position: relative;
@@ -113,6 +121,18 @@ form {
         background-color: #D9FFD9;
       }
     }
+  }
+}
+
+.errors {
+  position: relative;
+  padding: 10px;
+  margin: 15px auto;
+  display: none;
+  span {
+    display: block;
+    color: red;
+    margin-top: 6px;
   }
 }
 

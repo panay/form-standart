@@ -20,7 +20,7 @@ html
   body
     main.main
       h1 Типовые элементы формы
-      form(action="" autocomplete="off")
+      form(action="" autocomplete="off" id="common-form")
         fieldset
           div
             input(type="reset" value="Сбросить")
@@ -159,12 +159,14 @@ html
       //ВХОД
       form(action="" autocomplete="off" id="form-login").form-example
         fieldset
+          div.errors
+            span
           h2 Форма входа
           div
             label(for="email") электронная почта
             input(data-cookie type="email" id="email" name="email" placeholder="input@email")
           div
-            label(for="password") пароль
+            label(for="login-password") пароль
             input(type="password" id="password" name="password" placeholder="password")
             a(href="#").hint забыли пароль?
           div

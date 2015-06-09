@@ -1,8 +1,10 @@
-//  $SVG
-//------------------------------------------------------------------------
-$(function () {
-  $.get("/img/sprite.svg", function (data) {
-    var div = document.createElement("div");
+/*------------------------------------*\
+ $SVG
+ \*------------------------------------*/
+var getSVGSprite = function (url) {
+
+  $.get(url, function (data) {
+    var div = document.createElement('div');
     $(div).css({
       'border': '0',
       'clip': 'rect(0 0 0 0)',
@@ -16,15 +18,13 @@ $(function () {
     div.innerHTML = new XMLSerializer().serializeToString(data.documentElement);
     document.body.insertBefore(div, document.body.childNodes[0]);
   });
+};
 
-//---------------------------------------
-//	$MASK
-//---------------------------------------
-  // Date
-  $("[name='date']").inputmask("date", {placeholder: "дд/мм/гггг"});
+var setMasksOnInput = function (list) {
 
-  // Currency
-  $("[name='currency']").inputmask("numeric", {
+  $(list.date).inputmask("date", {placeholder: "дд/мм/гггг"});
+
+  $(list.currency).inputmask("numeric", {
     alias: "numeric",
     groupSeparator: ',',
     autoGroup: true,
@@ -34,60 +34,58 @@ $(function () {
     placeholder: '0'
   });
 
-  $("[name='name']").inputmask('Regex', {regex: "[_a-zA-Zа-яА-Я- ]+$"});
+  $(list.name).inputmask('Regex', {regex: "[_a-zA-Zа-яА-Я- ]+$"});
 
+  $(list.tel).inputmask("mask", {"mask": "+7 (999) 999-99-99"});
 
-  // Telephone
-  $('input[type="tel"]').inputmask("mask", {"mask": "+7 (999) 999-99-99"});
+  $(list.creditcard).inputmask("mask", {"mask": "9999-9999-9999-9999"});
 
-  // Bank Card
-  $('[name="creditcard"]').inputmask("mask", {"mask": "9999-9999-9999-9999"});
+  $(list.email).inputmask("email");
+};
 
-  // Email
-  $("[name='email']").inputmask("email");
+var togglePasswordType = function (btn) {
 
-//========================================================================
-//  $STYLED--SELECT
-//========================================================================
-  $('.select').wrap('<div class="select-wrapper"></div>');
+  var isPasswordType = $(btn).parent().find('input').attr('type') === 'password',
+      $btn = $(btn),
+      $input = $btn.parent().find('input');
 
-  // Styled select
-  $('.select--styled').fancySelect();
+  if (isPasswordType) {
+    $input.attr('type', 'text');
+    $btn.removeClass('unmask__on').addClass('unmask__off');
+  }
+  else {
+    $input.attr('type', 'password');
+    $btn.removeClass('unmask__off').addClass('unmask__on');
+  }
+  return false;
+};
 
-  // Select iconed
-  $('.select--iconed').fancySelect({
-    triggerTemplate: function (optionEl) {
-      return '<svg role="img"><use xlink:href="#icon-' + optionEl.data('icon') + '"></use></svg>' + '&nbsp;' + optionEl.text();
-    },
-    optionTemplate: function (optionEl) {
-      return '<svg role="img"><use xlink:href="#icon-' + optionEl.data('icon') + '"></use></svg>' + '&nbsp;' + optionEl.text();
-    }
-  });
+var validate = function (form) {
 
-  // Password show/hide
-  $('.unmask').on('click', function () {
-
-    if ($(this).parent().find('input').attr('type') == 'password') {
-      $(this).parent().find('input').attr('type', 'text');
-      $(this).removeClass('unmask__on').addClass('unmask__off');
-    }
-    else {
-      $(this).parent().find('input').attr('type', 'password');
-      $(this).removeClass('unmask__off').addClass('unmask__on');
-    }
-
-    return false;
-  });
-
-//---------------------------------------
-//	$VALIDATE
-//---------------------------------------
-
-  $("form").validate({
+  $(form).validate({
     debug: true,
     ignore: ".ignore",
     errorElement: "span",
-    onsubmit: false,
+    //onsubmit: false,
+    invalidHandler: function (event, validator) {
+      var errors = validator.numberOfInvalids();
+      if (errors) {
+        var message = "Пожалуйста, заполните все поля корректно.";
+        $("div.errors span").html(message);
+        $("div.errors").show();
+        $(this).find('fieldset').removeClass('valid');
+        $(this).find('fieldset').addClass('invalid');
+      } else {
+        $("div.errors").hide();
+        $(this).find('fieldset').removeClass('invalid');
+        $(this).find('fieldset').addClass('valid');
+      }
+    },
+    submitHandler: function (form) {
+      $(form).find('fieldset').removeClass('invalid');
+      $(form).find('fieldset').addClass('valid');
+      //form.submit();
+    },
     rules: {
       name: {
         required: true,
@@ -151,98 +149,128 @@ $(function () {
     max: $.validator.format("Пожалуйста, введите число, меньшее или равное {0}."),
     min: $.validator.format("Пожалуйста, введите число, большее или равное {0}.")
   });
+};
 
-  /*------------------------------------*\
-   $TAGS
-   \*------------------------------------*/
-  $('#tags').tagsInput();
+var styledSelect = function () {
 
-//========================================
-//  $COOKIES
-//========================================
+  $('.select').wrap('<div class="select-wrapper"></div>');
 
-// возвращает cookie с именем name, если есть, если нет, то undefined
-  function getCookie(name) {
-    var matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-  }
+  // Styled select
+  $('.select--styled').fancySelect();
 
-// устанавливает cookie c именем name и значением value
-// options - объект с свойствами cookie (expires, path, domain, secure)
-  function setCookie(name, value, options) {
-    options = options || {};
-
-    var expires = options.expires;
-
-    if (typeof expires == "number" && expires) {
-      var d = new Date();
-      d.setTime(d.getTime() + expires * 1000);
-      expires = options.expires = d;
+  // Select iconed
+  $('.select--iconed').fancySelect({
+    triggerTemplate: function (optionEl) {
+      return '<svg role="img"><use xlink:href="#icon-' + optionEl.data('icon') + '"></use></svg>' + '&nbsp;' + optionEl.text();
+    },
+    optionTemplate: function (optionEl) {
+      return '<svg role="img"><use xlink:href="#icon-' + optionEl.data('icon') + '"></use></svg>' + '&nbsp;' + optionEl.text();
     }
-    if (expires && expires.toUTCString) {
-      options.expires = expires.toUTCString();
-    }
+  });
+};
 
-    value = encodeURIComponent(value);
+var cookies = (function () {
 
-    var updatedCookie = name + "=" + value;
+  return {
+    get: function (name) {
+      var matches = document.cookie.match(new RegExp(
+          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+      ));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
+    },
+    set: function (name, value, options) {
+      options = options || {};
 
-    for (var propName in options) {
-      updatedCookie += "; " + propName;
-      var propValue = options[propName];
-      if (propValue !== true) {
-        updatedCookie += "=" + propValue;
+      var expires = options.expires;
+
+      if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+      }
+      if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+      }
+
+      value = encodeURIComponent(value);
+
+      var updatedCookie = name + "=" + value;
+
+      for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+          updatedCookie += "=" + propValue;
+        }
+      }
+
+      document.cookie = updatedCookie;
+    },
+    delete: function (name) {
+      this.set(name, "", {
+        expires: -1
+      });
+    },
+    deleteAll: function () {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
       }
     }
+  };
+}());
 
-    document.cookie = updatedCookie;
-  }
+$(function () {
 
-// удаляет cookie с именем name
-  function deleteCookie(name) {
-    setCookie(name, "", {
-      expires: -1
-    });
-  }
+  getSVGSprite('/img/sprite.svg');
 
-// Удаляет все куки
-  function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i];
-      var eqPos = cookie.indexOf("=");
-      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-  }
+  setMasksOnInput({
+    'date': "[name='date']",
+    'currency': "[name='currency']",
+    'name': "[name='name']",
+    'tel': "[type='tel']",
+    'creditcard': "[name='creditcard']",
+    'email': "[name='email']"
+  });
 
-//  $COOKIES > FUNCTIONS
-//------------------------------------------
+  $('.unmask').on('click', function () {
+    togglePasswordType(this);
+  });
+
+  validate('#common-form');
+  validate('#form-login');
+  validate('#registration-form');
+  validate('#recovery-pass');
+  validate('#feedback');
+
+  $('#tags').tagsInput();
+
+  styledSelect();
 
   var $cookies = $('[data-cookie]');
 
-  // Сохранить значения
-  function storeValues() {
-    $.each($cookies, function (index) {
-      setCookie(index, this.value, {expires: 3600 * 24 * 7});
-    });
-  }
-
   // Заполнить значения
   $.each($cookies, function (index) {
-    if (getCookie('' + index)) {
-      this.value = getCookie('' + index);
+    if (cookies.get('' + index)) {
+      this.value = cookies.get('' + index);
     }
   });
 
   // Сохранить значение при изменении
   $cookies.on('change', function () {
-    storeValues();
+    $.each($cookies, function (index) {
+      cookies.set(index, this.value, {expires: 3600 * 24 * 7});
+    });
   });
 
   // Управление cookies
-  $('#set_cookies').on('click', storeValues);
-  $('#delete_cookies').on('click', deleteAllCookies);
+  $('#set_cookies').on('click', function () {
+    $.each($cookies, function (index) {
+      cookies.set(index, this.value, {expires: 3600 * 24 * 7});
+    });
+  });
+  $('#delete_cookies').on('click', cookies.deleteAll);
 });

@@ -17,7 +17,7 @@
   <body>
     <main class="main">
       <h1>Типовые элементы формы</h1>
-      <form action="" autocomplete="off">
+      <form action="" autocomplete="off" id="common-form">
         <fieldset>
           <div>
             <input type="reset" value="Сбросить">
@@ -176,13 +176,14 @@
       <!--ВХОД-->
       <form action="" autocomplete="off" id="form-login" class="form-example">
         <fieldset>
+          <div class="errors"><span></span></div>
           <h2>Форма входа</h2>
           <div>
             <label for="email">электронная почта</label>
             <input data-cookie type="email" id="email" name="email" placeholder="input@email">
           </div>
           <div>
-            <label for="password">пароль</label>
+            <label for="login-password">пароль</label>
             <input type="password" id="password" name="password" placeholder="password"><a href="#" class="hint">забыли пароль?</a>
           </div>
           <div>
