@@ -22,50 +22,54 @@ html
       h1 Типовые элементы формы
       form(action="" autocomplete="off" id="common-form")
         fieldset
+          h2.heading-container УПРАВЛЕНИЕ COOKIES:
           div
             input(type="reset" value="Сбросить")
             input#set_cookies(type="button" value="Set Cookie")
             input#delete_cookies(type="button" value="Delete Cookie")
 
-          //поле под лейблом
+
+          h2.heading-container ТЕКСТОВЫЕ ПОЛЯ:
+          h3.heading-content ПОЛЕ ПОД ЛЕЙБЛОМ:
           div
-            label(for="name").required имя
+            label(for="name").required Имя
             input(data-cookie type="text" id="name" name="name" placeholder="ваше имя")
             p.hint подсказка под полем
           div
-            label(for="password") пароль
-            input(type="password" id="password" name="password" placeholder="password")
+            label(for="password") Пароль
+            input(type="password" id="password" name="password" placeholder="ваш пароль")
             span.error-msg Это поле необходимо заполнить.
             button.unmask(type="button" title="Скрыть / показать пароль")
               svg.unmask__on(role='img'): use(xlink:href='#icon-eye')
               svg.unmask__off(role='img'): use(xlink:href='#icon-eye-blocked')
               | Показать
           div
-            label(for="password_confirm") подтверждение пароля
-            input(type="password" id="password_confirm" name="password_confirm" placeholder="confirm password")
+            label(for="password_confirm") Подтверждение пароля
+            input(type="password" id="password_confirm" name="password_confirm" placeholder="подтвердить пароль")
 
-          //поле с лейблом в одну строку
+          h3.heading-content ПОЛЕ С ЛЕЙБЛОМ В ОДНУ СТРОКУ:
           div.inline-fields
-            label(for="email").required электронная почта
-            input(data-cookie type="email" id="email" name="email" placeholder="input@email")
+            label(for="email").required Электронная почта
+            input(data-cookie type="email" id="email" name="email" placeholder="ваш email")
           div.inline-fields
-            label(for="email_confirm").required подтверждение электронной почты
-            input(data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="confirm input@email")
+            label(for="email_confirm").required Подтверждение электронной почты
+            input(data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="подтвердть email")
 
-          //поле под лейблом в линию
+          h3.heading-content ПОЛЕ ПОД ЛЕЙБЛОМ В ЛИНИЮ:
           div.inline
             div
-              label(for="phone") номер телефона
-              input(data-cookie type="tel" id="phone" name="phone" placeholder="input phone")
+              label(for="phone") Номер телефона
+              input(data-cookie type="tel" id="phone" name="phone" placeholder="номер телефона")
             div
-              label(for="url") домашняя страница
-              input(data-cookie type="url" id="url" name="url" placeholder="your@site.net")
+              label(for="url") Домашняя страница
+              input(data-cookie type="url" id="url" name="url" placeholder="http://")
 
           //текстовая область
           div
-            label(for="comment") текстовая область
-            textarea(data-cookie id="comment" name="comment" placeholder="input your comment...")
+            label(for="comment") Текстовая область
+            textarea(data-cookie id="comment" name="comment" placeholder="ваш комментарий")
 
+          h2.heading-container СПЕЦИАЛЬНЫЕ ПОЛЯ:
           div
             label(for="currency") Деньги
             input(type="currency" name="currency" id="currency")
@@ -79,64 +83,33 @@ html
             input(type="text" name="date" id="date" placeholder="полная дата")
 
           div
-            label(for="tags") набор тегов
+            label(for="tags") Набор тегов
             input(type="tags" name="tags" id="tags" value="tag_1, tag two, третий тег")
 
-          //выпадающий список
+
+          h2.heading-container ВЫПАДАЮЩИЕ СПИСКИ:
           div
-            label(for="std-dropdown") выпадающий список
+            label(for="std-dropdown") Выпадающий список
             select(id="std-dropdown" name="std-dropdown")
-              option(value="1") first option
-              option(value="2") second option
-              option(value="3") third option
-              option(value="4") fourth option
-              option(value="5") fifth option
-
-          //чекбокс/радиобаттон
-          div
-            input(type="checkbox" value="ready" id="isready" name="isready")
-            label(for="isready") чекбоксни!
-          div
-            input(type="radio" value="rad" id="radiobat" name="radiobat")
-            label(for="radiobat") радиобаттни!
-          hr
-
-          //список чекбоксов/радиобаттонов
-          div
-            input(type="checkbox" value="ready1" id="isready1" name="isready1")
-            label(for="isready1") чекбоксни_1
-          div
-            input(type="checkbox" value="ready2" id="isready2" name="isready2")
-            label(for="isready2") чекбоксни_2
-          div
-            input(type="checkbox" value="ready3" id="isready3" name="isready3")
-            label(for="isready3") чекбоксни_3
-          hr
-
-          div
-            input(type="radio" value="rad1" id="radiobat1" name="radiobat1")
-            label(for="radiobat1") радиобаттни_1
-          div
-            input(type="radio" value="rad2" id="radiobat2" name="radiobat1")
-            label(for="radiobat2") радиобаттни_2
-          div
-            input(type="radio" value="rad3" id="radiobat3" name="radiobat1")
-            label(for="radiobat3") радиобаттни_3
-
+              option(value="1") Первый
+              option(value="2") Второй
+              option(value="3") Третий длиный
+              option(value="4") Четвертый очень длинный
+              option(value="5") Пятый
           div
             label Стилизованный селект
             select#select--styled.select--styled
-              option Lorem
-              option Ipsum
-              option Dolore
+              option Первый
+              option Второй
+              option Третий длинный
           div
             label Иконочный селект
             select#select--iconed.select--iconed
-              option(data-icon="comfort-wifi") Lorem
-              option(data-icon="comfort-wifi") Ipsum
-              option(data-icon="comfort-wifi") Dolore
+              option(data-icon="comfort-wifi") Первый
+              option(data-icon="comfort-wifi") Второй
+              option(data-icon="comfort-wifi") Третий длинный
 
-          //кнопки
+          h2.heading-container КНОПКИ
           div
             a.button.small(href="#0" title="Small")
               svg.svg-icon(role='img'): use(xlink:href='#icon-comfort-air')
@@ -156,6 +129,45 @@ html
             input.button.radius(type="button" value="Input button")
             input.button.medium(type="button" value="Input button")
             input.button.large(type="button" value="Input button")
+
+      h2.heading-container РАДИОБАТТОНЫ / ЧЕКБОКСЫ:
+      form(action="" autocomplete="off" id="")
+        fieldset
+          div
+            input(type="checkbox" value="ready" id="isready" name="isready")
+            label(for="isready") Чекбоксни!
+          div
+            input(type="radio" value="rad" id="radiobat" name="radiobat")
+            label(for="radiobat") Радиобаттни!
+
+      form(action="" autocomplete="off" id="")
+        fieldset.with-border
+          legend Список чекбоксов
+          div
+            input(type="checkbox" value="ready1" id="isready1" name="isready1")
+            label(for="isready1") Чекбокс_1
+          div
+            input(type="checkbox" value="ready2" id="isready2" name="isready2")
+            label(for="isready2") Чекбокс_2
+          div
+            input(type="checkbox" value="ready3" id="isready3" name="isready3")
+            label(for="isready3") Чекбокс_3
+
+      form(action="" autocomplete="off" id="")
+        fieldset.with-border
+          legend Список радиобаттонов
+          div
+            input(type="radio" value="rad1" id="radiobat1" name="radiobat1")
+            label(for="radiobat1") Радиобаттон_1
+          div
+            input(type="radio" value="rad2" id="radiobat2" name="radiobat1")
+            label(for="radiobat2") Радиобаттон_2
+          div
+            input(type="radio" value="rad3" id="radiobat3" name="radiobat1")
+            label(for="radiobat3") Радиобаттон_3
+
+
+      h2.heading-container ПРИМЕРЫ ГОТОВЫХ ФОРМ:
       //ВХОД
       form(action="" autocomplete="off" id="form-login").form-example
         fieldset
@@ -163,57 +175,66 @@ html
             span
           h2 Форма входа
           div
-            label(for="email") электронная почта
-            input(data-cookie type="email" id="email" name="email" placeholder="input@email")
+            label(for="email") Электронная почта
+            input(data-cookie type="email" id="email" name="email" placeholder="введите электронную почту")
           div
-            label(for="login-password") пароль
-            input(type="password" id="password" name="password" placeholder="password")
+            label(for="login-password") Пароль
+            input(type="password" id="password" name="password" placeholder="введите пароль")
             a(href="#").hint забыли пароль?
           div
+            input(type="checkbox" value="remember" id="remember" name="remember")
+            label(for="remember") Запомнить меня
+          div
             input.button.medium(type="submit" value="Войти")
+
       //РЕГИСТРАЦИЯ
       form(action="" autocomplete="off" id="registration-form").form-example
         fieldset
           h2 Форма регистрации
           div.inline-fields
-            label(for="email").required электронная почта
-            input(data-cookie type="email" id="email" name="email" placeholder="input@email")
+            label(for="email").required Электронная почта
+            input(data-cookie type="email" id="email" name="email" placeholder="введите электронную почту")
           div.inline-fields
-            label(for="email_confirm").required подтверждение электронной почты
-            input(data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="confirm input@email")
+            label(for="email_confirm").required Подтверждение электронной почты
+            input(data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="повторите электронную почту")
           div.inline-fields
-            label(for="password") пароль
-            input(type="password" id="password" name="password" placeholder="password")
+            label(for="password") Пароль
+            input(type="password" id="password" name="password" placeholder="введите пароль")
           div.inline-fields
-            label(for="password_confirm") подтверждение пароля
-            input(type="password" id="password_confirm" name="password_confirm" placeholder="confirm password")
+            label(for="password_confirm") Подтверждение пароля
+            input(type="password" id="password_confirm" name="password_confirm" placeholder="повторите пароль")
+          div.inline-fields
+            label(for="is_spam") Спамить на почту?
+            input(type="checkbox" id="is_spam" name="is_spam" value="true" checked="checked")
           div
             input.button.medium(type="submit" value="Зарегистрироваться")
+
       //ВОССТАНОВИТЬ ПАРОЛЬ
       form(action="" autocomplete="off" id="recovery-pass").form-example
         fieldset
           h2 Восстановление пароля
           div
-            label(for="email") электронная почта
-            input(data-cookie type="email" id="email" name="email" placeholder="input@email")
+            label(for="email") Электронная почта
+            input(data-cookie type="email" id="email" name="email" placeholder="введите электронную почту")
           div
             input.button.medium(type="submit" value="Отправить")
+
       //ОБРАТНАЯ СВЯЗЬ
       form(action="" autocomplete="off" id="feedback").form-example
         fieldset
           h2 Обратная связь
           div.inline
             div
-              label(for="name").required имя
+              label(for="name").required Имя
               input(data-cookie type="text" id="name" name="name" placeholder="ваше имя")
             div
-              label(for="phone") телефон
-              input(data-cookie type="tel" id="phone" name="phone" placeholder="input phone")
+              label(for="phone") Телефон
+              input(data-cookie type="tel" id="phone" name="phone" placeholder="ваш номер телефона")
             div
-              label(for="email").required электронная почта
-              input(data-cookie type="email" id="email" name="email" placeholder="input@email")
+              label(for="email").required Электронная почта
+              input(data-cookie type="email" id="email" name="email" placeholder="введите электронную почту")
           div
-            label(for="comment") текстовая область
-            textarea(data-cookie id="comment" name="comment" placeholder="input your comment...")
+            label(for="comment") Текстовая область
+            textarea(data-cookie id="comment" name="comment" placeholder="ваш комментарий")
           div
             input.button.medium(type="submit" value="Отправить заявку")

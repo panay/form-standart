@@ -19,20 +19,22 @@
       <h1>Типовые элементы формы</h1>
       <form action="" autocomplete="off" id="common-form">
         <fieldset>
+          <h2 class="heading-container">УПРАВЛЕНИЕ COOKIES:</h2>
           <div>
             <input type="reset" value="Сбросить">
             <input id="set_cookies" type="button" value="Set Cookie">
             <input id="delete_cookies" type="button" value="Delete Cookie">
           </div>
-          <!--поле под лейблом-->
+          <h2 class="heading-container">ТЕКСТОВЫЕ ПОЛЯ:</h2>
+          <h3 class="heading-content">ПОЛЕ ПОД ЛЕЙБЛОМ:</h3>
           <div>
-            <label for="name" class="required">имя</label>
+            <label for="name" class="required">Имя</label>
             <input data-cookie type="text" id="name" name="name" placeholder="ваше имя">
             <p class="hint">подсказка под полем</p>
           </div>
           <div>
-            <label for="password">пароль</label>
-            <input type="password" id="password" name="password" placeholder="password"><span class="error-msg">Это поле необходимо заполнить.</span>
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" placeholder="ваш пароль"><span class="error-msg">Это поле необходимо заполнить.</span>
             <button type="button" title="Скрыть / показать пароль" class="unmask">
               <svg role="img" class="unmask__on">
                 <use xlink:href="#icon-eye"></use>
@@ -43,34 +45,35 @@
             </button>
           </div>
           <div>
-            <label for="password_confirm">подтверждение пароля</label>
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="confirm password">
+            <label for="password_confirm">Подтверждение пароля</label>
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="подтвердить пароль">
           </div>
-          <!--поле с лейблом в одну строку-->
+          <h3 class="heading-content">ПОЛЕ С ЛЕЙБЛОМ В ОДНУ СТРОКУ:</h3>
           <div class="inline-fields">
-            <label for="email" class="required">электронная почта</label>
-            <input data-cookie type="email" id="email" name="email" placeholder="input@email">
+            <label for="email" class="required">Электронная почта</label>
+            <input data-cookie type="email" id="email" name="email" placeholder="ваш email">
           </div>
           <div class="inline-fields">
-            <label for="email_confirm" class="required">подтверждение электронной почты</label>
-            <input data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="confirm input@email">
+            <label for="email_confirm" class="required">Подтверждение электронной почты</label>
+            <input data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="подтвердть email">
           </div>
-          <!--поле под лейблом в линию-->
+          <h3 class="heading-content">ПОЛЕ ПОД ЛЕЙБЛОМ В ЛИНИЮ:</h3>
           <div class="inline">
             <div>
-              <label for="phone">номер телефона</label>
-              <input data-cookie type="tel" id="phone" name="phone" placeholder="input phone">
+              <label for="phone">Номер телефона</label>
+              <input data-cookie type="tel" id="phone" name="phone" placeholder="номер телефона">
             </div>
             <div>
-              <label for="url">домашняя страница</label>
-              <input data-cookie type="url" id="url" name="url" placeholder="your@site.net">
+              <label for="url">Домашняя страница</label>
+              <input data-cookie type="url" id="url" name="url" placeholder="http://">
             </div>
           </div>
           <!--текстовая область-->
           <div>
-            <label for="comment">текстовая область</label>
-            <textarea data-cookie id="comment" name="comment" placeholder="input your comment..."></textarea>
+            <label for="comment">Текстовая область</label>
+            <textarea data-cookie id="comment" name="comment" placeholder="ваш комментарий"></textarea>
           </div>
+          <h2 class="heading-container">СПЕЦИАЛЬНЫЕ ПОЛЯ:</h2>
           <div>
             <label for="currency">Деньги</label>
             <input type="currency" name="currency" id="currency">
@@ -84,73 +87,37 @@
             <input type="text" name="date" id="date" placeholder="полная дата">
           </div>
           <div>
-            <label for="tags">набор тегов</label>
+            <label for="tags">Набор тегов</label>
             <input type="tags" name="tags" id="tags" value="tag_1, tag two, третий тег">
           </div>
-          <!--выпадающий список-->
+          <h2 class="heading-container">ВЫПАДАЮЩИЕ СПИСКИ:</h2>
           <div>
-            <label for="std-dropdown">выпадающий список</label>
+            <label for="std-dropdown">Выпадающий список</label>
             <select id="std-dropdown" name="std-dropdown">
-              <option value="1">first option</option>
-              <option value="2">second option</option>
-              <option value="3">third option</option>
-              <option value="4">fourth option</option>
-              <option value="5">fifth option</option>
+              <option value="1">Первый</option>
+              <option value="2">Второй</option>
+              <option value="3">Третий длиный</option>
+              <option value="4">Четвертый очень длинный</option>
+              <option value="5">Пятый</option>
             </select>
-          </div>
-          <!--чекбокс/радиобаттон-->
-          <div>
-            <input type="checkbox" value="ready" id="isready" name="isready">
-            <label for="isready">чекбоксни!</label>
-          </div>
-          <div>
-            <input type="radio" value="rad" id="radiobat" name="radiobat">
-            <label for="radiobat">радиобаттни!</label>
-          </div>
-          <hr>
-          <!--список чекбоксов/радиобаттонов-->
-          <div>
-            <input type="checkbox" value="ready1" id="isready1" name="isready1">
-            <label for="isready1">чекбоксни_1</label>
-          </div>
-          <div>
-            <input type="checkbox" value="ready2" id="isready2" name="isready2">
-            <label for="isready2">чекбоксни_2</label>
-          </div>
-          <div>
-            <input type="checkbox" value="ready3" id="isready3" name="isready3">
-            <label for="isready3">чекбоксни_3</label>
-          </div>
-          <hr>
-          <div>
-            <input type="radio" value="rad1" id="radiobat1" name="radiobat1">
-            <label for="radiobat1">радиобаттни_1</label>
-          </div>
-          <div>
-            <input type="radio" value="rad2" id="radiobat2" name="radiobat1">
-            <label for="radiobat2">радиобаттни_2</label>
-          </div>
-          <div>
-            <input type="radio" value="rad3" id="radiobat3" name="radiobat1">
-            <label for="radiobat3">радиобаттни_3</label>
           </div>
           <div>
             <label>Стилизованный селект</label>
             <select id="select--styled" class="select--styled">
-              <option>Lorem</option>
-              <option>Ipsum</option>
-              <option>Dolore</option>
+              <option>Первый</option>
+              <option>Второй</option>
+              <option>Третий длинный</option>
             </select>
           </div>
           <div>
             <label>Иконочный селект</label>
             <select id="select--iconed" class="select--iconed">
-              <option data-icon="comfort-wifi">Lorem</option>
-              <option data-icon="comfort-wifi">Ipsum</option>
-              <option data-icon="comfort-wifi">Dolore</option>
+              <option data-icon="comfort-wifi">Первый</option>
+              <option data-icon="comfort-wifi">Второй</option>
+              <option data-icon="comfort-wifi">Третий длинный</option>
             </select>
           </div>
-          <!--кнопки-->
+          <h2 class="heading-container">КНОПКИ</h2>
           <div><a href="#0" title="Small" class="button small">
               <svg role="img" class="svg-icon">
                 <use xlink:href="#icon-comfort-air"></use>
@@ -173,18 +140,70 @@
           </div>
         </fieldset>
       </form>
+      <h2 class="heading-container">РАДИОБАТТОНЫ / ЧЕКБОКСЫ:</h2>
+      <form action="" autocomplete="off" id="">
+        <fieldset>
+          <div>
+            <input type="checkbox" value="ready" id="isready" name="isready">
+            <label for="isready">Чекбоксни!</label>
+          </div>
+          <div>
+            <input type="radio" value="rad" id="radiobat" name="radiobat">
+            <label for="radiobat">Радиобаттни!</label>
+          </div>
+        </fieldset>
+      </form>
+      <form action="" autocomplete="off" id="">
+        <fieldset class="with-border">
+          <legend>Список чекбоксов</legend>
+          <div>
+            <input type="checkbox" value="ready1" id="isready1" name="isready1">
+            <label for="isready1">Чекбокс_1</label>
+          </div>
+          <div>
+            <input type="checkbox" value="ready2" id="isready2" name="isready2">
+            <label for="isready2">Чекбокс_2</label>
+          </div>
+          <div>
+            <input type="checkbox" value="ready3" id="isready3" name="isready3">
+            <label for="isready3">Чекбокс_3</label>
+          </div>
+        </fieldset>
+      </form>
+      <form action="" autocomplete="off" id="">
+        <fieldset class="with-border">
+          <legend>Список радиобаттонов</legend>
+          <div>
+            <input type="radio" value="rad1" id="radiobat1" name="radiobat1">
+            <label for="radiobat1">Радиобаттон_1</label>
+          </div>
+          <div>
+            <input type="radio" value="rad2" id="radiobat2" name="radiobat1">
+            <label for="radiobat2">Радиобаттон_2</label>
+          </div>
+          <div>
+            <input type="radio" value="rad3" id="radiobat3" name="radiobat1">
+            <label for="radiobat3">Радиобаттон_3</label>
+          </div>
+        </fieldset>
+      </form>
+      <h2 class="heading-container">ПРИМЕРЫ ГОТОВЫХ ФОРМ:</h2>
       <!--ВХОД-->
       <form action="" autocomplete="off" id="form-login" class="form-example">
         <fieldset>
           <div class="errors"><span></span></div>
           <h2>Форма входа</h2>
           <div>
-            <label for="email">электронная почта</label>
-            <input data-cookie type="email" id="email" name="email" placeholder="input@email">
+            <label for="email">Электронная почта</label>
+            <input data-cookie type="email" id="email" name="email" placeholder="введите электронную почту">
           </div>
           <div>
-            <label for="login-password">пароль</label>
-            <input type="password" id="password" name="password" placeholder="password"><a href="#" class="hint">забыли пароль?</a>
+            <label for="login-password">Пароль</label>
+            <input type="password" id="password" name="password" placeholder="введите пароль"><a href="#" class="hint">забыли пароль?</a>
+          </div>
+          <div>
+            <input type="checkbox" value="remember" id="remember" name="remember">
+            <label for="remember">Запомнить меня</label>
           </div>
           <div>
             <input type="submit" value="Войти" class="button medium">
@@ -196,20 +215,24 @@
         <fieldset>
           <h2>Форма регистрации</h2>
           <div class="inline-fields">
-            <label for="email" class="required">электронная почта</label>
-            <input data-cookie type="email" id="email" name="email" placeholder="input@email">
+            <label for="email" class="required">Электронная почта</label>
+            <input data-cookie type="email" id="email" name="email" placeholder="введите электронную почту">
           </div>
           <div class="inline-fields">
-            <label for="email_confirm" class="required">подтверждение электронной почты</label>
-            <input data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="confirm input@email">
+            <label for="email_confirm" class="required">Подтверждение электронной почты</label>
+            <input data-cookie type="email" id="email_confirm" name="email_confirm" placeholder="повторите электронную почту">
           </div>
           <div class="inline-fields">
-            <label for="password">пароль</label>
-            <input type="password" id="password" name="password" placeholder="password">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" placeholder="введите пароль">
           </div>
           <div class="inline-fields">
-            <label for="password_confirm">подтверждение пароля</label>
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="confirm password">
+            <label for="password_confirm">Подтверждение пароля</label>
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="повторите пароль">
+          </div>
+          <div class="inline-fields">
+            <label for="is_spam">Спамить на почту?</label>
+            <input type="checkbox" id="is_spam" name="is_spam" value="true" checked="checked">
           </div>
           <div>
             <input type="submit" value="Зарегистрироваться" class="button medium">
@@ -221,8 +244,8 @@
         <fieldset>
           <h2>Восстановление пароля</h2>
           <div>
-            <label for="email">электронная почта</label>
-            <input data-cookie type="email" id="email" name="email" placeholder="input@email">
+            <label for="email">Электронная почта</label>
+            <input data-cookie type="email" id="email" name="email" placeholder="введите электронную почту">
           </div>
           <div>
             <input type="submit" value="Отправить" class="button medium">
@@ -235,21 +258,21 @@
           <h2>Обратная связь</h2>
           <div class="inline">
             <div>
-              <label for="name" class="required">имя</label>
+              <label for="name" class="required">Имя</label>
               <input data-cookie type="text" id="name" name="name" placeholder="ваше имя">
             </div>
             <div>
-              <label for="phone">телефон</label>
-              <input data-cookie type="tel" id="phone" name="phone" placeholder="input phone">
+              <label for="phone">Телефон</label>
+              <input data-cookie type="tel" id="phone" name="phone" placeholder="ваш номер телефона">
             </div>
             <div>
-              <label for="email" class="required">электронная почта</label>
-              <input data-cookie type="email" id="email" name="email" placeholder="input@email">
+              <label for="email" class="required">Электронная почта</label>
+              <input data-cookie type="email" id="email" name="email" placeholder="введите электронную почту">
             </div>
           </div>
           <div>
-            <label for="comment">текстовая область</label>
-            <textarea data-cookie id="comment" name="comment" placeholder="input your comment..."></textarea>
+            <label for="comment">Текстовая область</label>
+            <textarea data-cookie id="comment" name="comment" placeholder="ваш комментарий"></textarea>
           </div>
           <div>
             <input type="submit" value="Отправить заявку" class="button medium">

@@ -246,7 +246,10 @@ $(function () {
   validate('#recovery-pass');
   validate('#feedback');
 
-  $('#tags').tagsInput();
+  $('#tags').tagsInput({
+    'width': '100%',
+    'defaultText': 'добавить'
+  });
 
   styledSelect();
 
