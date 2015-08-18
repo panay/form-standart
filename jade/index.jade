@@ -39,7 +39,7 @@ html
             label(for="password") Пароль
             input(type="password" id="password" name="password" placeholder="ваш пароль")
             span.error-msg Это поле необходимо заполнить.
-            button.unmask(type="button" title="Скрыть / показать пароль")
+            button.unmask.unmask__on(type="button" title="Скрыть / показать пароль")
               svg.unmask__on(role='img'): use(xlink:href='#icon-eye')
               svg.unmask__off(role='img'): use(xlink:href='#icon-eye-blocked')
               | Показать

@@ -45,9 +45,9 @@ var setMasksOnInput = function (list) {
 
 var togglePasswordType = function (btn) {
 
-  var isPasswordType = $(btn).parent().find('input').attr('type') === 'password',
-      $btn = $(btn),
-      $input = $btn.parent().find('input');
+  var $btn = $(btn),
+      $input = $btn.parent().find('input'),
+      isPasswordType = $input.attr('type') === 'password';
 
   if (isPasswordType) {
     $input.attr('type', 'text');
@@ -225,7 +225,7 @@ var cookies = (function () {
 
 $(function () {
 
-  getSVGSprite('/img/sprite.svg');
+  getSVGSprite('../img/sprite.svg');
 
   setMasksOnInput({
     'date': "[name='date']",
